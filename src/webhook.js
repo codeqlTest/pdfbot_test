@@ -6,7 +6,7 @@ var error = require('./error')
 var utils = require('./utils')
 
 function ping (job, options) {
-  if (!options.url || !utils.isValidUrl(options.url)) {
+  if (!options.url) {
     throw new Error('Webhook is not valid url.')
   }
 
