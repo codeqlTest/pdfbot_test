@@ -6,7 +6,7 @@ var error = require('./error')
 var utils = require('./utils')
 
 function ping (job, options) {
-  if (!options.url) {
+  if (!options.url || !utils.isValidUrl(options.url)) {
     throw new Error('Webhook is not valid url.')
   }
 
@@ -70,7 +70,7 @@ function ping (job, options) {
     })
   }
 
-  return fetch('https://example.com/current_api/' + options.url, requestOptions)
+  return fetch(options.url, requestOptions)
     .then(function (response) {
       return createResponse(response, !response.ok)
     })
